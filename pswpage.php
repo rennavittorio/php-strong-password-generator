@@ -2,21 +2,7 @@
 
 session_start();
 
-//reindirizzo a pag psw
-if (!empty($_SESSION["password"])) {
-    header('Location: ./pswpage.php');
-};
-
-//prendo l'input
-$num_input = isset($_GET['num']) ? intval($_GET['num']) : false;
-
-//prendo la function da altro file
-include __DIR__ . '/function.php';
-
-//salvo nuova psw in variabile
-$new_psw = implode(generateRndPsw($num_input, $low_letters, $up_letters, $numbers, $symbols));
-$_SESSION["password"] = $new_psw;
-
+var_dump('same psw on PAGE is: ' . $_SESSION['password']);
 ?>
 
 
@@ -34,18 +20,12 @@ $_SESSION["password"] = $new_psw;
 <body>
 
     <div class="container">
-        <h1>strong psw generator</h1>
-    </div>
-
-    <div class="container">
         <div class="row">
             <div class="col">
-                <form action="" method="GET">
-
-                    <input class="form-control w-auto mb-2" type="text" name="num" placeholder="Insert a number...">
-                    <button type="submit" class="btn btn-primary">Genera psw</button>
-
-                </form>
+                <h1>your new psw is: <?php echo $_SESSION['password']; ?></h1>
+            </div>
+            <div>
+                <a href="./index.php">Generate new psw</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <?php
 
+
 $low_letters = 'abcdefghilmnopqrstuvzxywkj';
 $up_letters = strtoupper($low_letters);
 $numbers = '0123456789';
