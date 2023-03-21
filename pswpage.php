@@ -1,8 +1,9 @@
 <?php
 
 session_start();
+$show_psw = $_SESSION["password"];
+$_SESSION["password"] = null;
 
-var_dump('same psw on PAGE is: ' . $_SESSION['password']);
 ?>
 
 
@@ -22,7 +23,7 @@ var_dump('same psw on PAGE is: ' . $_SESSION['password']);
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>your new psw is: <?php echo $_SESSION['password']; ?></h1>
+                <h1>your new psw is: <?php echo $show_psw; ?></h1>
             </div>
             <div>
                 <a href="./index.php">Generate new psw</a>

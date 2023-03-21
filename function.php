@@ -1,34 +1,23 @@
 <?php
 
 
-$low_letters = 'abcdefghilmnopqrstuvzxywkj';
-$up_letters = strtoupper($low_letters);
-$numbers = '0123456789';
-$symbols = '?!%&$£';
-
-function generateRndPsw($num_input, $low_letters, $up_letters, $numbers, $symbols)
+function generateRndPsw($num_input, $chars, $doublesCheck)
 {
-    $rndPsw = [];
-    for ($i = 0; $i < $num_input; $i++) {
+    if ($num_input !== 0) {
+        $rndPsw = '';
+        while (strlen($rndPsw) < $num_input) {
 
-        $rndChoice = rand(0, 3);
-        if ($rndChoice === 0) {
-            $rndIndex = rand(0, (strlen($low_letters) - 1));
-            $rndPsw[] = $low_letters[$rndIndex];
-        }
-        if ($rndChoice === 1) {
-            $rndIndex = rand(0, (strlen($up_letters) - 1));
-            $rndPsw[] = $up_letters[$rndIndex];
-        }
-        if ($rndChoice === 2) {
-            $rndIndex = rand(0, (strlen($numbers) - 1));
-            $rndPsw[] = $numbers[$rndIndex];
-        }
-        if ($rndChoice === 3) {
-            $rndIndex = rand(0, (strlen($symbols) - 1));
-            $rndPsw[] = $symbols[$rndIndex];
-        }
-    };
+            $rndIndex = rand(0, (strlen($chars) - 1));
+
+            if ($doublesCheck === 'off') {
+                if (!str_contains($rndPsw, $chars[$rndIndex])) {
+                    $rndPsw .= $chars[$rndIndex];
+                }
+            } else {
+                $rndPsw .= $chars[$rndIndex];
+            }
+        };
+    }
 
     return $rndPsw;
 };
